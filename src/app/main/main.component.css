@@ -1,0 +1,7 @@
+.content {
+    height: 100%;
+    overflow-y: auto;
+    /*argin-left: 200px;*/
+    background-color: #272B30;
+    padding-bottom: 1rem;
+}

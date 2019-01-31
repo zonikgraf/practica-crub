@@ -1,0 +1,23 @@
+  <!--img class="mb-4" src="/docs/4.2/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"-->
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit(correologin, contrasenalogin)">
+      <h1 class="h3 mb-3 font-weight-normal text-white">Bienvenido Cinéfilo</h1>
+              <div class="form-group">
+                <label>Correo</label>
+                <input type="text" #correologin formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Déjame tu correo, para estar en contácto</div>
+                  <div *ngIf="f.email.errors.email">Tiene que ser un correo</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" #contrasenalogin formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">¿Y tu contraseña?</div>
+                  <div *ngIf="f.password.errors.minlength">muy fácil, pónle más carácteres (6)</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Alégrame el día</button>
+              </div>
+</form>

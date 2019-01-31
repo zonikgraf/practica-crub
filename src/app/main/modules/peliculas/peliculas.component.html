@@ -1,0 +1,57 @@
+<div class="row">
+<div class="col-sm-4">
+<form class="my-4 sticky-top " (submit)="agregarPelicula(nombrePelicula, comentaioPelicula, fechaPelicula)">
+    <div class="form-group">
+      <label>Nombre Pelicula</label>
+      <input type="text" #nombrePelicula class="form-control form-control-sm"  placeholder="Nombre de la película que viste">
+    </div>
+    <div class="form-group">
+        <label>Comentarios</label>
+        <textarea class="form-control form-control-sm" #comentaioPelicula rows="2" placeholder="Que tal te parecio la película"></textarea>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Puntaje</label>
+                <select class="form-control form-control-sm" (change)="ponePuntaje($event.target.value)">
+                  <option *ngFor="let puntaje of lista_puntaje">{{puntaje.puntaje}}</option>
+                </select>
+              </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" #fechaPelicula class="form-control form-control-sm" placeholder="00/00/00">
+              </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Categoria</label>
+                <select class="form-control form-control-sm" (change)="poneCategoria($event.target.value)">
+                  <option *ngFor="let categoria of lista_categoria">{{categoria.categoria}}</option>
+                </select>
+              </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm mt-3">Agregar</button>
+</form>
+</div>
+<div class="col-sm-8">
+<div class="sticky-top d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3" style="background-color: #272b2f;">
+    <h1 class="h4 text-white">Mis peliculas <span class="badge badge-light">{{lista_peliculas.length}}</span></h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Compartir</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Descargar</button>
+      </div>
+    </div>
+  </div>
+<div class="row">
+<app-listapeliculas [ngClass]="{'card-select' : Indice == i }" (click)="obtenerIndice(peliculas, i)" class="col-sm-6" *ngFor="let peliculas of lista_peliculas, let i = index" [listaDatosPeliculas]="peliculas"></app-listapeliculas>
+</div>
+</div>
+</div>
+
+
+
+

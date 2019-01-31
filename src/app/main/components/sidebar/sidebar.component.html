@@ -1,0 +1,11 @@
+<div class="sidebar">
+    <div class="sidebar-sticky">
+      <ul class="nav list-group">
+        <li class="" *ngFor="let menu of lista_menus; let i = index">
+          <a class="list-group-item" href="#" [routerLink]="menu.router" routerLinkActive="active">
+            {{menu.descripcion}} <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+</div>

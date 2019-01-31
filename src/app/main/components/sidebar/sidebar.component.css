@@ -1,0 +1,22 @@
+.sidebar {
+    top: 56px;
+    position: fixed;
+    height:calc(100% - 56px);;
+    width: 200px;
+    background-color: #343a40;
+    padding: 1rem 0;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem;
+    margin-bottom: -1px;
+    background-color: transparent; 
+    border: none;
+    color: #fff;
+    border-radius: 0;
+}
+.list-group-item.active {
+    background-color: #464d54;
+    border-color:none;
+}

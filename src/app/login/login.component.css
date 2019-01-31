@@ -1,0 +1,14 @@
+form {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+label {
+    color: #9A9DA0;
+}
+.form-control {
+    background-color: #20262b;
+    border: 1px solid #464d54;
+    color: #d6dee4;
+}
