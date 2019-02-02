@@ -1,0 +1,16 @@
+
+      <div class="card text-white bg-secondary mb-4 mt-2">
+          <div class="card-body">
+            <h5 class="card-title">{{listaDatosPeliculas.titulo}}</h5>
+            <small class="card-text">{{listaDatosPeliculas.descipcion}} </small>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-between align-items-cente">
+              <small class="text-white">Vista: {{listaDatosPeliculas.fecha}}</small>
+              <small class="text-white"> <img width="12" src="https://cdn.iconscout.com/icon/free/png-256/star-bookmark-favorite-shape-rank-like-32386.png" alt=""> {{listaDatosPeliculas.puntaje}}</small>
+            </div>
+            <small class="text-white"><code>{{listaDatosPeliculas.categoria}}</code></small>
+            </div>
+            <button type="button" class="btn btn-dark" (click)="deletePelicula()">Eliminar</button>
+        </div>
+  

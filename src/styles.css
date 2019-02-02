@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.css';
+body, html {
+    height: 100%;
+}
+body {
+    background-color: #343a40!important;
+}
+/*BOOSTRAT ESTILOS*/
+.container {
+    max-width: 1000px !important;
+}
+label {
+    font-size: 90%;
+}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #464d54; }
+::-webkit-scrollbar-thumb { background: #ddd; }
+::-webkit-scrollbar-thumb { background: #20262b; }
+
+.card-select .card {
+    box-shadow: 0 0 8px 3px #fac000;
+}
