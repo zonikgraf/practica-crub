@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Token} from '../../login/login'
+import { Token} from '../../../login/login'
 
 
 @Component({

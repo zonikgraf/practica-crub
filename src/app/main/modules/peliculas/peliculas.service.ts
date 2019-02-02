@@ -1,50 +1,35 @@
 import { Injectable } from '@angular/core'
 import { Peliculas } from './peliculas';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeliculasService {
-   
+
+  peliculas_list: AngularFireList<any>;
   nueva_pelicula: Peliculas[];
 
-  constructor() { 
+  constructor(private firebase: AngularFireDatabase) {
     this.nueva_pelicula = [];
   }
 
-  getPelicula(){
-    //return  this.nueva_pelicula;
-    if(localStorage.getItem('nuevapelicula') === null) {
-      this.nueva_pelicula = [];
-    } else {
-      this.nueva_pelicula = JSON.parse(localStorage.getItem('nuevapelicula'));
-    }
-    return this.nueva_pelicula;
+  getPeliculas() {
+    return this.peliculas_list = this.firebase.list('alexander');
   }
 
-  addPelicula(nueva_pelicula:Peliculas){
-    this.nueva_pelicula.push(nueva_pelicula);
-
-    if(localStorage.getItem('nuevapelicula') === null) { 
-        localStorage.setItem('nuevapelicula', JSON.stringify(this.nueva_pelicula));
-    } else {
-      this.nueva_pelicula = JSON.parse(localStorage.getItem('nuevapelicula'));
-      this.nueva_pelicula.push(nueva_pelicula); 
-      localStorage.setItem('nuevapelicula', JSON.stringify(this.nueva_pelicula));
-    }
-    
- }
-
-
- deletePelicula(nueva_pelicula:Peliculas) {
-  for (let i = 0; i < this.nueva_pelicula.length; i++) {
-    if (nueva_pelicula == this.nueva_pelicula[i]) {
-      this.nueva_pelicula.splice(i, 1);
-      localStorage.setItem('nuevapelicula', JSON.stringify(this.nueva_pelicula));
-    }
+  addPelicula(nueva_pelicula: Peliculas) {
+    this.peliculas_list.push({
+      titulo: nueva_pelicula.titulo,
+      descipcion: nueva_pelicula.descipcion,
+      puntaje: nueva_pelicula.puntaje,
+      categoria: nueva_pelicula.categoria,
+      fecha: nueva_pelicula.fecha
+    })
   }
-}
 
+  deleteProduct($key: string) {
+    this.peliculas_list.remove($key);
+  }
 
- 
 }

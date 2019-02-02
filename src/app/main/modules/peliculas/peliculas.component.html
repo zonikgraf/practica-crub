@@ -38,7 +38,7 @@
 </div>
 <div class="col-sm-8">
 <div class="sticky-top d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3" style="background-color: #272b2f;">
-    <h1 class="h4 text-white">Mis peliculas <span class="badge badge-light">{{lista_peliculas.length}}</span></h1>
+    <h1 class="h4 text-white">Mis peliculas <span class="badge badge-light">{{lista_peliculas_firebase?.length}}</span></h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button type="button" class="btn btn-sm btn-outline-secondary">Compartir</button>
@@ -47,7 +47,7 @@
     </div>
   </div>
 <div class="row">
-<app-listapeliculas [ngClass]="{'card-select' : Indice == i }" (click)="obtenerIndice(peliculas, i)" class="col-sm-6" *ngFor="let peliculas of lista_peliculas, let i = index" [listaDatosPeliculas]="peliculas"></app-listapeliculas>
+<app-listapeliculas [ngClass]="{'card-select' : Indice == i }" (click)="obtenerIndice(peliculas, i)" class="col-sm-6" *ngFor="let peliculas of lista_peliculas_firebase, let i = index" [listaDatosPeliculas]="peliculas"></app-listapeliculas>
 </div>
 </div>
 </div>

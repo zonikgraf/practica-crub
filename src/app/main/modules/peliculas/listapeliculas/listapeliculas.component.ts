@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PeliculasService} from '../peliculas.service'
-import { Peliculas} from '../peliculas'
+import { Peliculas } from '../peliculas'
+import { $ } from 'protractor';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { Peliculas} from '../peliculas'
 })
 export class ListapeliculasComponent implements OnInit {
 
-  lista_peliculas_nuevas : Peliculas[];
+  lista_peliculas_nuevas: Peliculas[];
+  $key: string;
 
   @Input() listaDatosPeliculas: Peliculas;
   constructor(public lista_peliculas : PeliculasService) { }
@@ -18,9 +20,10 @@ export class ListapeliculasComponent implements OnInit {
   ngOnInit() {   
     console.log(this.listaDatosPeliculas)
   }
-  deletePelicula(pelicula: Peliculas) {
-    if(confirm('Are you sure you want to delete this task?')) {
-      this.lista_peliculas.deletePelicula(this.listaDatosPeliculas);
+
+  deletePelicula($key: string) {
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.lista_peliculas.deleteProduct($key);
     }
   }
 }

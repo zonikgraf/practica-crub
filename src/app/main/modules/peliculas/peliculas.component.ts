@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaPeliculas, PuntajePeliculas } from './peliculas';
 import { PeliculasService } from './peliculas.service';
-import { Peliculas} from './peliculas';
+import { Peliculas } from './peliculas';
 import { log } from 'util';
 
 @Component({
@@ -15,13 +15,23 @@ export class PeliculasComponent implements OnInit {
   lista_puntaje = PuntajePeliculas;
   lista_peliculas: Peliculas[];
 
+  lista_peliculas_firebase: Peliculas[];
+
   constructor(public nuevaPelicula: PeliculasService) { }
 
   ngOnInit() {
-    this.lista_peliculas = this.nuevaPelicula.getPelicula();
-    console.log(this.Puntaje );
+    
+    return this.nuevaPelicula.getPeliculas()
+      .snapshotChanges().subscribe(item => {
+        this.lista_peliculas_firebase = [];
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.lista_peliculas_firebase.push(x as Peliculas);
+        });
+      });
   }
-  
+
   Puntaje;
   ponePuntaje(puntajeValue) {
     this.Puntaje = puntajeValue;
@@ -34,34 +44,28 @@ export class PeliculasComponent implements OnInit {
 
   agregarPelicula(nombrePelicula, comentaioPelicula, fechaPelicula) {
 
-    if( comentaioPelicula.value != '' && nombrePelicula.value != '' && this.Puntaje != null && fechaPelicula.value != '' && this.Categoria != null){
-
-    this.nuevaPelicula.addPelicula({
-      titulo: nombrePelicula.value,
-      descipcion: comentaioPelicula.value,
-      puntaje: this.Puntaje,
-      categoria: this.Categoria,
-      fecha: fechaPelicula.value,
-      
-    })
-    
-    this.lista_peliculas = this.nuevaPelicula.getPelicula();
-    
-    }  else {
+    if (comentaioPelicula.value != '' && nombrePelicula.value != '' && this.Puntaje != null && fechaPelicula.value != '' && this.Categoria != null) {
+      this.nuevaPelicula.addPelicula({
+        titulo: nombrePelicula.value,
+        descipcion: comentaioPelicula.value,
+        puntaje: this.Puntaje,
+        categoria: this.Categoria,
+        fecha: fechaPelicula.value,
+      })
+    } else {
       alert("Tienes que llenar el formulario");
-      return false; 
+      return false;
     }
-  
     nombrePelicula.value = '';
     comentaioPelicula.value = '';
     fechaPelicula.value = '';
-    
+    return false;
+
   }
 
-    public Indice
-	obtenerIndice(pelicula, i) {
-		this.Indice = i;
-    console.log(this.Indice);
+  public Indice
+  obtenerIndice(pelicula, i) {
+    this.Indice = i;   
   }
-  
+
 }
